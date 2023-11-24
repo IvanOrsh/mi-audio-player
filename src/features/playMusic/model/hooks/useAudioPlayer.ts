@@ -6,7 +6,7 @@ import {
   PlayerState,
   Controls,
 } from "../types/types";
-import createAudioPlayer from "../services/createAudioPlayer";
+import createAudioPlayer from "../lib/createAudioPlayer";
 
 interface AudioPlayer extends Controls {
   playerState: PlayerState;
@@ -57,6 +57,12 @@ export function useAudioPlayer(playlist: Playlist): AudioPlayer {
     }
   }
 
+  function toggleShuffle() {
+    if (playerRef.current) {
+      playerRef.current.toggleShuffle();
+    }
+  }
+
   return {
     playerState,
     togglePlayPause,
@@ -64,6 +70,7 @@ export function useAudioPlayer(playlist: Playlist): AudioPlayer {
     playPreviousTrack,
 
     toggleRepeat,
+    toggleShuffle,
 
     cleanup,
   };

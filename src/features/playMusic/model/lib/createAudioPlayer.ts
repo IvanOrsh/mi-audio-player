@@ -7,6 +7,8 @@ export default function createAudioPlayer(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let currentTrackIndex = 0;
   let repeat = false;
+  let shuffle = false;
+
   const audio = new Audio();
 
   function setupAudioEventListeners() {
@@ -49,6 +51,24 @@ export default function createAudioPlayer(
     audio.currentTime = 0;
     audio.play();
   }
+  function computeRandomTrackIndex(): number {
+    if (playlist.length === 1) {
+      return 0;
+    }
+    const randomIndex = Math.floor(Math.random() * (playlist.length - 1));
+
+    return randomIndex < currentTrackIndex ? randomIndex : randomIndex + 1;
+  }
+  function computeSubsequentTrackIndex(): number {
+    return (currentTrackIndex + 1) % playlist.length;
+  }
+  function computeNextTrackIndex(): number {
+    if (shuffle) {
+      return computeRandomTrackIndex();
+    } else {
+      return computeSubsequentTrackIndex();
+    }
+  }
 
   // Controls
   function togglePlayPause() {
@@ -59,7 +79,8 @@ export default function createAudioPlayer(
     }
   }
   function playNextTrack() {
-    loadTrack((currentTrackIndex + 1) % playlist.length);
+    const nextTrack = computeNextTrackIndex();
+    loadTrack(nextTrack);
     audio.play();
   }
   function playPreviousTrack() {
@@ -68,6 +89,10 @@ export default function createAudioPlayer(
   }
   function toggleRepeat() {
     repeat = !repeat;
+    emitCurrentPlayerState();
+  }
+  function toggleShuffle() {
+    shuffle = !shuffle;
     emitCurrentPlayerState();
   }
 
@@ -83,6 +108,7 @@ export default function createAudioPlayer(
     return {
       playbackState: getPlabackState(),
       repeat,
+      shuffle,
     };
   }
 
@@ -94,6 +120,7 @@ export default function createAudioPlayer(
     playPreviousTrack,
 
     toggleRepeat,
+    toggleShuffle,
 
     cleanup,
   };

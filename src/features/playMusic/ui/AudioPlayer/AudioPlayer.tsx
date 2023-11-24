@@ -6,11 +6,12 @@ import { useAudioPlayer } from "../../model/hooks/useAudioPlayer";
 
 export default function AudioPlayer() {
   const {
-    playerState: { playbackState, repeat },
+    playerState: { playbackState, repeat, shuffle },
     togglePlayPause,
     playPreviousTrack,
     playNextTrack,
     toggleRepeat,
+    toggleShuffle,
   } = useAudioPlayer(playlist);
 
   return (
@@ -24,10 +25,12 @@ export default function AudioPlayer() {
       <div>
         <Controls
           repeat={repeat}
+          shuffle={shuffle}
           onPlay={togglePlayPause}
           onNext={playNextTrack}
           onPrev={playPreviousTrack}
           onRepeat={toggleRepeat}
+          onShuffle={toggleShuffle}
           isPlaying={playbackState === "PLAYING"}
         />
       </div>

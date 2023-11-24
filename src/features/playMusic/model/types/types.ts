@@ -16,18 +16,22 @@ export type PlaybackState = "PLAYING" | "PAUSED";
 export type PlayerState = {
   playbackState: PlaybackState;
   repeat: boolean;
+  shuffle: boolean;
 };
 
 export const InitialPlayerState: PlayerState = {
   playbackState: "PAUSED",
   repeat: false,
+  shuffle: false,
 };
 
 export type Controls = {
   togglePlayPause: () => void;
   playNextTrack: () => void;
   playPreviousTrack: () => void;
+
   toggleRepeat: () => void;
+  toggleShuffle: () => void;
 
   cleanup: () => void;
 };
