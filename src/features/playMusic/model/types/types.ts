@@ -25,4 +25,5 @@ export type Controls = {
   togglePlayPause: () => void;
   playNextTrack: () => void;
   playPreviousTrack: () => void;
+  cleanup: () => void;
 };

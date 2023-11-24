@@ -12,6 +12,10 @@ export default function createAudioPlayer(
     audio.addEventListener("playing", emitCurrentPlayerState);
     audio.addEventListener("pause", emitCurrentPlayerState);
   }
+  function removeAudioEventListeners() {
+    audio.removeEventListener("playing", emitCurrentPlayerState);
+    audio.removeEventListener("pause", emitCurrentPlayerState);
+  }
   function emitCurrentPlayerState() {
     const state = computeCurrentPlayerState();
     onStateChange(state);
@@ -20,6 +24,10 @@ export default function createAudioPlayer(
   function init() {
     setupAudioEventListeners();
     loadTrack(0);
+  }
+  function cleanup() {
+    removeAudioEventListeners();
+    audio.pause();
   }
 
   function loadTrack(index: number) {
@@ -64,5 +72,6 @@ export default function createAudioPlayer(
     togglePlayPause,
     playNextTrack,
     playPreviousTrack,
+    cleanup,
   };
 }
