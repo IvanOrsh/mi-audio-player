@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25rem;
+    height: 0.5rem;
+    background-color: #505050;
+    border-radius: 0.5rem;
+    outline: none;
+    @apply drop-shadow-lg;
+  }
+}
+
 :root {
   background-color: #fff;
   font-synthesis: none;
