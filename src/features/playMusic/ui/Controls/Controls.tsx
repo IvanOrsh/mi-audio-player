@@ -1,11 +1,11 @@
-import ImageButton from "./ImageButton";
+import ImageButton from "@/shared/ui/ImageButton";
 
-import playButtonIcon from "../assets/icons/ic_play.svg";
+import playButtonIcon from "@/assets/icons/ic_play.svg";
 // import pauseButtonIcon from "../assets/icons/ic_pause.svg";
-import nextButtonIcon from "../assets/icons/ic_next.svg";
-import prevButtonIcon from "../assets/icons/ic_prev.svg";
-import shuffleButtonIcon from "../assets/icons/ic_shuffle.svg";
-import repeatButtonIcon from "../assets/icons/ic_repeat.svg";
+import nextButtonIcon from "@/assets/icons/ic_next.svg";
+import prevButtonIcon from "@/assets/icons/ic_prev.svg";
+import shuffleButtonIcon from "@/assets/icons/ic_shuffle.svg";
+import repeatButtonIcon from "@/assets/icons/ic_repeat.svg";
 
 export default function Controls() {
   // shuffle

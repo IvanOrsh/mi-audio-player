@@ -1,6 +1,6 @@
-import Controls from "./Controls";
-import ProgressBar from "./ProgressBar";
-import SongInfo from "./SongInfo";
+import Controls from "../Controls/Controls";
+import ProgressBar from "@/shared/ui/ProgressBar";
+import SongInfo from "@/shared/ui/SongInfo";
 
 export default function AudioPlayer() {
   return (

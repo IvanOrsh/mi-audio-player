@@ -1,4 +1,4 @@
-import coverArt from "../assets/playlist/cover-art/1.jpg";
+import coverArt from "@/assets/playlist/cover-art/1.jpg";
 
 export default function SongInfo() {
   return (

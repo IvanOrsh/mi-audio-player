@@ -1,4 +1,4 @@
-import AudioPlayer from "./components/AudioPlayer";
+import { AudioPlayer } from "./features/playMusic";
 
 function App() {
   return (
