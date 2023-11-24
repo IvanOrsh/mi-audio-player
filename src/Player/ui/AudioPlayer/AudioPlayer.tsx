@@ -1,9 +1,9 @@
 import Controls from "../Controls/Controls";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import SongInfo from "@/shared/ui/SongInfo";
-import { playlist } from "@/assets/playlist/playlist";
-import { useAudioPlayer } from "../../model/hooks/useAudioPlayer";
-import { formatTime } from "../../model/lib/formatTime";
+import SongInfo from "../SongInfo/SongInfo";
+import { useAudioPlayer } from "@/model/hooks/useAudioPlayer";
+import { formatTime } from "@/model/lib/formatTime";
+import { playlist } from "@/shared/assets/playlist/playlist";
 
 export default function AudioPlayer() {
   const {
@@ -13,6 +13,7 @@ export default function AudioPlayer() {
       shuffle,
       currentTrackDuration,
       currentTrackPlaybackPosition,
+      currentTrackMetadata,
     },
     togglePlayPause,
     playPreviousTrack,
@@ -40,7 +41,11 @@ export default function AudioPlayer() {
 
   return (
     <div className="flex flex-col items-center gap-y-4">
-      <SongInfo />
+      <SongInfo
+        title={currentTrackMetadata?.title}
+        artist={currentTrackMetadata?.artist}
+        coverArtSrc={currentTrackMetadata?.coverArtSrc}
+      />
 
       {/* progress bar */}
       <ProgressBar

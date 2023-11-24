@@ -1,12 +1,13 @@
 import ImageButton from "@/shared/ui/ImageButton";
-import playButtonIcon from "@/assets/icons/ic_play.svg";
-import pauseButtonIcon from "@/assets/icons/ic_pause.svg";
-import nextButtonIcon from "@/assets/icons/ic_next.svg";
-import prevButtonIcon from "@/assets/icons/ic_prev.svg";
-import shuffleButtonIcon from "@/assets/icons/ic_shuffle.svg";
-import shuffleButtonDisabled from "@/assets/icons/ic_shuffle_disabled.svg";
-import repeatButtonDisabled from "@/assets/icons/ic_repeat_disabled.svg";
-import repeatButtonIcon from "@/assets/icons/ic_repeat.svg";
+
+import playButtonIcon from "@/shared/assets/icons/ic_play.svg";
+import pauseButtonIcon from "@/shared/assets/icons/ic_pause.svg";
+import nextButtonIcon from "@/shared/assets/icons/ic_next.svg";
+import prevButtonIcon from "@/shared/assets/icons/ic_prev.svg";
+import shuffleButtonIcon from "@/shared/assets/icons/ic_shuffle.svg";
+import shuffleButtonDisabled from "@/shared/assets/icons/ic_shuffle_disabled.svg";
+import repeatButtonDisabled from "@/shared/assets/icons/ic_repeat_disabled.svg";
+import repeatButtonIcon from "@/shared/assets/icons/ic_repeat.svg";
 
 type ControlsProps = {
   onPlay: () => void;

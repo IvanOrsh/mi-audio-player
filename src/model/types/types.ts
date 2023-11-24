@@ -19,6 +19,7 @@ export type PlayerState = {
   shuffle: boolean;
   currentTrackDuration: number | null;
   currentTrackPlaybackPosition: number | null;
+  currentTrackMetadata: TrackMetadata | null;
 };
 
 export const InitialPlayerState: PlayerState = {
@@ -27,6 +28,7 @@ export const InitialPlayerState: PlayerState = {
   shuffle: false,
   currentTrackDuration: null,
   currentTrackPlaybackPosition: null,
+  currentTrackMetadata: null,
 };
 
 export type Controls = {

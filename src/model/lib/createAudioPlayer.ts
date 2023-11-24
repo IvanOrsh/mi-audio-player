@@ -1,4 +1,10 @@
-import { Playlist, PlayerState, PlaybackState, Controls } from "../types/types";
+import {
+  Playlist,
+  PlayerState,
+  PlaybackState,
+  Controls,
+  TrackMetadata,
+} from "../types/types";
 
 export default function createAudioPlayer(
   playlist: Playlist,
@@ -132,6 +138,15 @@ export default function createAudioPlayer(
     return isNaN(audio.currentTime) ? null : audio.currentTime;
   }
 
+  // track metadata
+  function getCurrentTrackMetadata(): TrackMetadata | null {
+    if (currentTrackIndex < playlist.length) {
+      return playlist[currentTrackIndex].metadata;
+    }
+
+    return null;
+  }
+
   function computeCurrentPlayerState(): PlayerState {
     return {
       playbackState: getPlabackState(),
@@ -139,6 +154,7 @@ export default function createAudioPlayer(
       shuffle,
       currentTrackDuration: getCurrentTrackDuration(),
       currentTrackPlaybackPosition: getCurrentTrackPlaybackPosition(),
+      currentTrackMetadata: getCurrentTrackMetadata(),
     };
   }
 
