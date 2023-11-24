@@ -11,7 +11,7 @@ export default function Controls() {
   // shuffle
 
   return (
-    <div className="flex mt-4">
+    <div className="flex">
       <ImageButton src={shuffleButtonIcon} onClick={() => {}} />
       <ImageButton src={prevButtonIcon} onClick={() => {}} />
       <ImageButton

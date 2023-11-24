@@ -9,9 +9,9 @@ export default function ProgressBar() {
         step="0.25"
         className="slider"
       />
-      <div className="flex w-full justify-between">
-        <span className="text-xs">01:00</span>
-        <span className="text-xs">02:00</span>
+      <div className="flex w-full justify-between text-primary">
+        <span className="text-sm">01:00</span>
+        <span className="text-sm">02:00</span>
       </div>
     </div>
   );
