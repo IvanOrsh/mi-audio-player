@@ -10,3 +10,13 @@ export type Track = {
 };
 
 export type Playlist = Track[];
+
+export type PlaybackState = "PLAYING" | "PAUSED";
+
+export type PlayerState = {
+  playbackState: PlaybackState;
+};
+
+export const InitialPlayerState: PlayerState = {
+  playbackState: "PAUSED",
+};

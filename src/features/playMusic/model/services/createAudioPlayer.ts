@@ -1,20 +1,30 @@
-import { Playlist } from "../..";
+import { Playlist, PlayerState, PlaybackState } from "../types/types";
 
-export default function createAudioPlayer(playlist: Playlist) {
+export default function createAudioPlayer(
+  playlist: Playlist,
+  onStateChange: (state: PlayerState) => void
+) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let currentTrackIndex = 0;
   const audio = new Audio();
 
-  function loadTrack(index: number) {
-    audio.src = playlist[index].audioSrc;
-    // audio.src =
-    //   "https://wleckkrhtkopzrztmrus.supabase.co/storage/v1/object/public/songs/song-i'm%20sinking%20father-lpbg7c2q?t=2023-11-24T15%3A36%3A18.800Z";
-    audio.load();
-    currentTrackIndex = index;
+  function setupAudioEventListeners() {
+    audio.addEventListener("playing", emitCurrentPlayerState);
+    audio.addEventListener("pause", emitCurrentPlayerState);
+  }
+  function emitCurrentPlayerState() {
+    const state = computeCurrentPlayerState();
+    onStateChange(state);
   }
 
   function init() {
+    setupAudioEventListeners();
     loadTrack(0);
+  }
+
+  function loadTrack(index: number) {
+    audio.src = playlist[index].audioSrc;
+    currentTrackIndex = index;
   }
 
   function togglePlayPause() {
@@ -24,6 +34,20 @@ export default function createAudioPlayer(playlist: Playlist) {
     } else {
       audio.pause();
     }
+  }
+
+  function getPlabackState(): PlaybackState {
+    if (audio.paused) {
+      return "PAUSED";
+    } else {
+      return "PLAYING";
+    }
+  }
+
+  function computeCurrentPlayerState(): PlayerState {
+    return {
+      playbackState: getPlabackState(),
+    };
   }
 
   init();
