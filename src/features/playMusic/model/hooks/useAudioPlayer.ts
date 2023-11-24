@@ -50,11 +50,21 @@ export function useAudioPlayer(playlist: Playlist): AudioPlayer {
       playerRef.current.cleanup();
     }
   }
+
+  function toggleRepeat() {
+    if (playerRef.current) {
+      playerRef.current.toggleRepeat();
+    }
+  }
+
   return {
     playerState,
     togglePlayPause,
     playNextTrack,
     playPreviousTrack,
+
+    toggleRepeat,
+
     cleanup,
   };
 }

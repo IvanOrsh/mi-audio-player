@@ -5,8 +5,13 @@ import { playlist } from "@/assets/playlist/playlist";
 import { useAudioPlayer } from "../../model/hooks/useAudioPlayer";
 
 export default function AudioPlayer() {
-  const { playerState, togglePlayPause, playPreviousTrack, playNextTrack } =
-    useAudioPlayer(playlist);
+  const {
+    playerState: { playbackState, repeat },
+    togglePlayPause,
+    playPreviousTrack,
+    playNextTrack,
+    toggleRepeat,
+  } = useAudioPlayer(playlist);
 
   return (
     <div className="flex flex-col items-center gap-y-4">
@@ -18,10 +23,12 @@ export default function AudioPlayer() {
       {/* controls */}
       <div>
         <Controls
+          repeat={repeat}
           onPlay={togglePlayPause}
           onNext={playNextTrack}
           onPrev={playPreviousTrack}
-          isPlaying={playerState.playbackState === "PLAYING"}
+          onRepeat={toggleRepeat}
+          isPlaying={playbackState === "PLAYING"}
         />
       </div>
     </div>

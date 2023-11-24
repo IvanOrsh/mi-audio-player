@@ -15,15 +15,19 @@ export type PlaybackState = "PLAYING" | "PAUSED";
 
 export type PlayerState = {
   playbackState: PlaybackState;
+  repeat: boolean;
 };
 
 export const InitialPlayerState: PlayerState = {
   playbackState: "PAUSED",
+  repeat: false,
 };
 
 export type Controls = {
   togglePlayPause: () => void;
   playNextTrack: () => void;
   playPreviousTrack: () => void;
+  toggleRepeat: () => void;
+
   cleanup: () => void;
 };

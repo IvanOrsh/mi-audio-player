@@ -5,6 +5,7 @@ import pauseButtonIcon from "@/assets/icons/ic_pause.svg";
 import nextButtonIcon from "@/assets/icons/ic_next.svg";
 import prevButtonIcon from "@/assets/icons/ic_prev.svg";
 import shuffleButtonIcon from "@/assets/icons/ic_shuffle.svg";
+import repeatButtonDisabled from "@/assets/icons/ic_repeat_disabled.svg";
 import repeatButtonIcon from "@/assets/icons/ic_repeat.svg";
 
 type ControlsProps = {
@@ -12,10 +13,13 @@ type ControlsProps = {
   onPrev: () => void;
   onNext: () => void;
   isPlaying: boolean;
+
+  repeat: boolean;
+  onRepeat: () => void;
 };
 
 export default function Controls(props: ControlsProps) {
-  const { onPlay, isPlaying, onPrev, onNext } = props;
+  const { onPlay, isPlaying, onPrev, onNext, repeat, onRepeat } = props;
 
   return (
     <div className="flex">
@@ -27,7 +31,10 @@ export default function Controls(props: ControlsProps) {
         onClick={onPlay}
       />
       <ImageButton src={nextButtonIcon} onClick={onNext} />
-      <ImageButton src={repeatButtonIcon} onClick={() => {}} />
+      <ImageButton
+        src={repeat ? repeatButtonIcon : repeatButtonDisabled}
+        onClick={onRepeat}
+      />
     </div>
   );
 }
