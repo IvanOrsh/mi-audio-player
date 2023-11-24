@@ -15,11 +15,13 @@ export default function createAudioPlayer(
     audio.addEventListener("playing", emitCurrentPlayerState);
     audio.addEventListener("pause", emitCurrentPlayerState);
     audio.addEventListener("ended", onCurrentTrackEnded);
+    audio.addEventListener("timeupdate", emitCurrentPlayerState);
   }
   function removeAudioEventListeners() {
     audio.removeEventListener("playing", emitCurrentPlayerState);
     audio.removeEventListener("pause", emitCurrentPlayerState);
     audio.removeEventListener("ended", onCurrentTrackEnded);
+    audio.removeEventListener("timeupdate", emitCurrentPlayerState);
   }
   function emitCurrentPlayerState() {
     const state = computeCurrentPlayerState();
@@ -104,11 +106,21 @@ export default function createAudioPlayer(
     }
   }
 
+  // track duration
+  function getCurrentTrackDuration(): number | null {
+    return isNaN(audio.duration) ? null : audio.duration;
+  }
+  function getCurrentTrackPlaybackPosition(): number | null {
+    return isNaN(audio.currentTime) ? null : audio.currentTime;
+  }
+
   function computeCurrentPlayerState(): PlayerState {
     return {
       playbackState: getPlabackState(),
       repeat,
       shuffle,
+      currentTrackDuration: getCurrentTrackDuration(),
+      currentTrackPlaybackPosition: getCurrentTrackPlaybackPosition(),
     };
   }
 

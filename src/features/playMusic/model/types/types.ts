@@ -17,12 +17,16 @@ export type PlayerState = {
   playbackState: PlaybackState;
   repeat: boolean;
   shuffle: boolean;
+  currentTrackDuration: number | null;
+  currentTrackPlaybackPosition: number | null;
 };
 
 export const InitialPlayerState: PlayerState = {
   playbackState: "PAUSED",
   repeat: false,
   shuffle: false,
+  currentTrackDuration: null,
+  currentTrackPlaybackPosition: null,
 };
 
 export type Controls = {

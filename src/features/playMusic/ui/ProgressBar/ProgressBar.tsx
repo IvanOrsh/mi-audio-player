@@ -1,11 +1,15 @@
-export default function ProgressBar() {
+type ProgressBarProps = {
+  progress: number;
+};
+
+export default function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <div className="flex flex-col gap-y-1">
       <input
         type="range"
         min="1"
         max="100"
-        value={50}
+        value={progress}
         step="0.25"
         className="slider"
       />
