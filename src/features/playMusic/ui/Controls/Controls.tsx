@@ -1,5 +1,4 @@
 import ImageButton from "@/shared/ui/ImageButton";
-
 import playButtonIcon from "@/assets/icons/ic_play.svg";
 import pauseButtonIcon from "@/assets/icons/ic_pause.svg";
 import nextButtonIcon from "@/assets/icons/ic_next.svg";

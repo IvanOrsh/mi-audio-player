@@ -8,6 +8,7 @@ export default function createAudioPlayer(
   let currentTrackIndex = 0;
   let repeat = false;
   let shuffle = false;
+  const playbackHistory: number[] = [];
 
   const audio = new Audio();
 
@@ -83,12 +84,20 @@ export default function createAudioPlayer(
     }
   }
   function playNextTrack() {
+    playbackHistory.push(currentTrackIndex);
     const nextTrack = computeNextTrackIndex();
     loadTrack(nextTrack);
     audio.play();
   }
   function playPreviousTrack() {
-    loadTrack((currentTrackIndex - 1 + playlist.length) % playlist.length);
+    if (playbackHistory.length === 0 || audio.currentTime > 5) {
+      replayCurrentTrack();
+    } else {
+      const prevTrackIndex = playbackHistory.pop();
+      loadTrack(prevTrackIndex || 0);
+      audio.play();
+    }
+
     audio.play();
   }
   function toggleRepeat() {
