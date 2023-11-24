@@ -97,6 +97,13 @@ export default function createAudioPlayer(
     shuffle = !shuffle;
     emitCurrentPlayerState();
   }
+  function setPlaybackPosition(position: number) {
+    if (isNaN(position)) {
+      return;
+    }
+
+    audio.currentTime = position;
+  }
 
   function getPlabackState(): PlaybackState {
     if (audio.paused) {
@@ -133,6 +140,8 @@ export default function createAudioPlayer(
 
     toggleRepeat,
     toggleShuffle,
+
+    setPlaybackPosition,
 
     cleanup,
   };

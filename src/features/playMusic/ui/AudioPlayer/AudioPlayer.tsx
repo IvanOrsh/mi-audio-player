@@ -18,7 +18,16 @@ export default function AudioPlayer() {
     playNextTrack,
     toggleRepeat,
     toggleShuffle,
+    setPlaybackPosition,
   } = useAudioPlayer(playlist);
+
+  const setProgress = (value: number) => {
+    if (!currentTrackDuration) {
+      return;
+    }
+
+    setPlaybackPosition((value * currentTrackDuration) / 100);
+  };
 
   const computeProgress = (): number => {
     if (!currentTrackDuration || !currentTrackPlaybackPosition) {
@@ -33,7 +42,7 @@ export default function AudioPlayer() {
       <SongInfo />
 
       {/* progress bar */}
-      <ProgressBar progress={computeProgress()} />
+      <ProgressBar progress={computeProgress()} onChange={setProgress} />
 
       {/* controls */}
       <div>

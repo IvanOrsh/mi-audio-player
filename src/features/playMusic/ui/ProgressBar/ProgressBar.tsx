@@ -1,8 +1,9 @@
 type ProgressBarProps = {
   progress: number;
+  onChange: (value: number) => void;
 };
 
-export default function ProgressBar({ progress }: ProgressBarProps) {
+export default function ProgressBar({ progress, onChange }: ProgressBarProps) {
   return (
     <div className="flex flex-col gap-y-1">
       <input
@@ -10,6 +11,7 @@ export default function ProgressBar({ progress }: ProgressBarProps) {
         min="1"
         max="100"
         value={progress}
+        onChange={(e) => onChange(e.target.valueAsNumber)}
         step="0.25"
         className="slider"
       />

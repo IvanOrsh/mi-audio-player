@@ -63,6 +63,12 @@ export function useAudioPlayer(playlist: Playlist): AudioPlayer {
     }
   }
 
+  function setPlaybackPosition(position: number) {
+    if (playerRef.current) {
+      playerRef.current.setPlaybackPosition(position);
+    }
+  }
+
   return {
     playerState,
     togglePlayPause,
@@ -71,6 +77,8 @@ export function useAudioPlayer(playlist: Playlist): AudioPlayer {
 
     toggleRepeat,
     toggleShuffle,
+
+    setPlaybackPosition,
 
     cleanup,
   };

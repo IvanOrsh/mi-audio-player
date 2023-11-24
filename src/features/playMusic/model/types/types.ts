@@ -37,5 +37,7 @@ export type Controls = {
   toggleRepeat: () => void;
   toggleShuffle: () => void;
 
+  setPlaybackPosition: (position: number) => void;
+
   cleanup: () => void;
 };
