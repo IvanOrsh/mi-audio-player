@@ -12,7 +12,10 @@ export default function ImageButton(props: ImageButtonProps) {
   const buttonSize = 65;
 
   return (
-    <button onClick={onClick}>
+    <button
+      onClick={onClick}
+      className="hover:scale-110 transition duration-300 ease-in-out"
+    >
       <img
         src={src}
         alt="control"

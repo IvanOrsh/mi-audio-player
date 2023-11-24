@@ -7,8 +7,12 @@ import prevButtonIcon from "@/assets/icons/ic_prev.svg";
 import shuffleButtonIcon from "@/assets/icons/ic_shuffle.svg";
 import repeatButtonIcon from "@/assets/icons/ic_repeat.svg";
 
-export default function Controls() {
-  // shuffle
+type ControlsProps = {
+  onPlay: () => void;
+};
+
+export default function Controls(props: ControlsProps) {
+  const { onPlay } = props;
 
   return (
     <div className="flex">
@@ -17,7 +21,7 @@ export default function Controls() {
       <ImageButton
         className="mr-2 ml-2"
         src={playButtonIcon}
-        onClick={() => {}}
+        onClick={onPlay}
       />
       <ImageButton src={nextButtonIcon} onClick={() => {}} />
       <ImageButton src={repeatButtonIcon} onClick={() => {}} />
