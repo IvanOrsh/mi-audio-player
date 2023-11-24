@@ -30,7 +30,6 @@ export default function createAudioPlayer(
   function togglePlayPause() {
     if (audio.paused) {
       audio.play();
-      console.log(audio);
     } else {
       audio.pause();
     }
