@@ -3,6 +3,7 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import SongInfo from "@/shared/ui/SongInfo";
 import { playlist } from "@/assets/playlist/playlist";
 import { useAudioPlayer } from "../../model/hooks/useAudioPlayer";
+import { formatTime } from "../../model/lib/formatTime";
 
 export default function AudioPlayer() {
   const {
@@ -42,7 +43,12 @@ export default function AudioPlayer() {
       <SongInfo />
 
       {/* progress bar */}
-      <ProgressBar progress={computeProgress()} onChange={setProgress} />
+      <ProgressBar
+        progress={computeProgress()}
+        onChange={setProgress}
+        leftLabel={formatTime(currentTrackPlaybackPosition)}
+        rightLabel={formatTime(currentTrackDuration)}
+      />
 
       {/* controls */}
       <div>

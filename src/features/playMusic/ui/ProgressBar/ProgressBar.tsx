@@ -1,9 +1,13 @@
 type ProgressBarProps = {
   progress: number;
   onChange: (value: number) => void;
+  leftLabel: string;
+  rightLabel: string;
 };
 
-export default function ProgressBar({ progress, onChange }: ProgressBarProps) {
+export default function ProgressBar(props: ProgressBarProps) {
+  const { progress, onChange, leftLabel, rightLabel } = props;
+
   return (
     <div className="flex flex-col gap-y-1">
       <input
@@ -16,8 +20,8 @@ export default function ProgressBar({ progress, onChange }: ProgressBarProps) {
         className="slider"
       />
       <div className="flex w-full justify-between text-primary">
-        <span className="text-sm">01:00</span>
-        <span className="text-sm">02:00</span>
+        <span className="text-sm">{leftLabel}</span>
+        <span className="text-sm">{rightLabel}</span>
       </div>
     </div>
   );

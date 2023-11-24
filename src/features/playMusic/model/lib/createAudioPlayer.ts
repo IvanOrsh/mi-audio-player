@@ -16,12 +16,14 @@ export default function createAudioPlayer(
     audio.addEventListener("pause", emitCurrentPlayerState);
     audio.addEventListener("ended", onCurrentTrackEnded);
     audio.addEventListener("timeupdate", emitCurrentPlayerState);
+    audio.addEventListener("loadeddata", emitCurrentPlayerState);
   }
   function removeAudioEventListeners() {
     audio.removeEventListener("playing", emitCurrentPlayerState);
     audio.removeEventListener("pause", emitCurrentPlayerState);
     audio.removeEventListener("ended", onCurrentTrackEnded);
     audio.removeEventListener("timeupdate", emitCurrentPlayerState);
+    audio.removeEventListener("loadeddata", emitCurrentPlayerState);
   }
   function emitCurrentPlayerState() {
     const state = computeCurrentPlayerState();
