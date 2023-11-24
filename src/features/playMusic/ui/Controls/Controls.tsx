@@ -9,22 +9,24 @@ import repeatButtonIcon from "@/assets/icons/ic_repeat.svg";
 
 type ControlsProps = {
   onPlay: () => void;
+  onPrev: () => void;
+  onNext: () => void;
   isPlaying: boolean;
 };
 
 export default function Controls(props: ControlsProps) {
-  const { onPlay, isPlaying } = props;
+  const { onPlay, isPlaying, onPrev, onNext } = props;
 
   return (
     <div className="flex">
       <ImageButton src={shuffleButtonIcon} onClick={() => {}} />
-      <ImageButton src={prevButtonIcon} onClick={() => {}} />
+      <ImageButton src={prevButtonIcon} onClick={onPrev} />
       <ImageButton
         className="mr-2 ml-2"
         src={isPlaying ? pauseButtonIcon : playButtonIcon}
         onClick={onPlay}
       />
-      <ImageButton src={nextButtonIcon} onClick={() => {}} />
+      <ImageButton src={nextButtonIcon} onClick={onNext} />
       <ImageButton src={repeatButtonIcon} onClick={() => {}} />
     </div>
   );

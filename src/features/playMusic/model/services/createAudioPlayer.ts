@@ -1,9 +1,9 @@
-import { Playlist, PlayerState, PlaybackState } from "../types/types";
+import { Playlist, PlayerState, PlaybackState, Controls } from "../types/types";
 
 export default function createAudioPlayer(
   playlist: Playlist,
   onStateChange: (state: PlayerState) => void
-) {
+): Controls {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let currentTrackIndex = 0;
   const audio = new Audio();
@@ -27,12 +27,21 @@ export default function createAudioPlayer(
     currentTrackIndex = index;
   }
 
+  // Controls
   function togglePlayPause() {
     if (audio.paused) {
       audio.play();
     } else {
       audio.pause();
     }
+  }
+  function playNextTrack() {
+    loadTrack((currentTrackIndex + 1) % playlist.length);
+    audio.play();
+  }
+  function playPreviousTrack() {
+    loadTrack((currentTrackIndex - 1 + playlist.length) % playlist.length);
+    audio.play();
   }
 
   function getPlabackState(): PlaybackState {
@@ -50,5 +59,10 @@ export default function createAudioPlayer(
   }
 
   init();
-  return togglePlayPause;
+
+  return {
+    togglePlayPause,
+    playNextTrack,
+    playPreviousTrack,
+  };
 }

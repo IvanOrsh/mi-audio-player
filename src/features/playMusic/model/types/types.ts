@@ -20,3 +20,9 @@ export type PlayerState = {
 export const InitialPlayerState: PlayerState = {
   playbackState: "PAUSED",
 };
+
+export type Controls = {
+  togglePlayPause: () => void;
+  playNextTrack: () => void;
+  playPreviousTrack: () => void;
+};

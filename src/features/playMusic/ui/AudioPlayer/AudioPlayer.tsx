@@ -12,9 +12,7 @@ export default function AudioPlayer() {
   const [playerState, setPlayerState] =
     useState<PlayerState>(InitialPlayerState);
 
-  const togglePlayPauseRef = useRef(
-    createAudioPlayer(playlist, setPlayerState)
-  );
+  const player = useRef(createAudioPlayer(playlist, setPlayerState));
 
   return (
     <div className="flex flex-col items-center gap-y-4">
@@ -26,7 +24,9 @@ export default function AudioPlayer() {
       {/* controls */}
       <div>
         <Controls
-          onPlay={togglePlayPauseRef.current}
+          onPlay={player.current.togglePlayPause}
+          onNext={player.current.playNextTrack}
+          onPrev={player.current.playPreviousTrack}
           isPlaying={playerState.playbackState === "PLAYING"}
         />
       </div>
